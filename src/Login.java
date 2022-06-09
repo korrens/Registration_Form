@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -16,6 +17,7 @@ public class Login implements ActionListener {
         JPanel panel = new JPanel();
         JFrame frame = new JFrame();
 
+        // Frame, panel, title
         frame.setSize(600,400);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(panel);
@@ -23,10 +25,12 @@ public class Login implements ActionListener {
 
         panel.setLayout(null);
 
+        // Heading
         JLabel headingLabel = new JLabel("REGISTRATION FORM");
         headingLabel.setBounds(285, 25, 160, 25);
         panel.add(headingLabel);
 
+        // Labels and Text fields
         JLabel nameLabel = new JLabel("Name");
         nameLabel.setBounds(150, 70, 80, 25);
         panel.add(nameLabel);
@@ -46,6 +50,11 @@ public class Login implements ActionListener {
         femaleButton = new JRadioButton("Female");
         femaleButton.setBounds(370,100,100,25);
         panel.add(femaleButton);
+
+        // Made a button group just to remove option when both can be selected
+        ButtonGroup group = new ButtonGroup();
+        group.add(maleButton);
+        group.add(femaleButton);
 
         JLabel emailLabel = new JLabel("E-mail");
         emailLabel.setBounds(150, 130, 80, 25);
@@ -71,44 +80,32 @@ public class Login implements ActionListener {
         confirmPasswordText.setBounds(270, 190, 165, 25);
         panel.add(confirmPasswordText);
 
+        // Checkbox
         c1 = new JCheckBox("I agree to website terms and policy!");
         c1.setBounds(240,220,300,25);
         panel.add(c1);
 
+        // Button
         JButton button = new JButton("Submit");
         button.setBounds(300, 260, 100, 25);
-        button.addActionListener(new Login());
         panel.add(button);
+
+        button.addActionListener(new Login());
 
         frame.setVisible(true);
 
     }
 
-
+// Action Listener
     @Override
     public void actionPerformed(ActionEvent e) {
         String name = nameText.getText();
-//        String male = maleButton.getText();
-//        String female = femaleButton.getText();
         String email = emailText.getText();
-        String password = passwordText.getText();
-        String confirmPassword = confirmPasswordText.getText();
-//        String c1 = String.valueOf(JCheckBox.getDefaultLocale());
+        String password = String.valueOf(passwordText.getPassword());
+        String confirmPassword = String.valueOf(confirmPasswordText.getPassword());
 
-        String gender;
-        if (maleButton.isSelected()) {
-            gender = "Male";
-        }  else {
-                gender = "Female";
-        }
 
-        String check;
-        if (c1.isSelected()) {
-            check = "checked";
-        }  else {
-            gender = "empty";
-        }
-        System.out.println(name + ", " + maleButton.isSelected() +", " + email + ", " + password + ", " + confirmPassword + ", " + c1.isSelected());
+        System.out.println(name + ", " + maleButton.isSelected() + ", " + email + ", " + password + ", " + confirmPassword + ", " + c1.isSelected());
 
     }
-}
+        }
