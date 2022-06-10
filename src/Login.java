@@ -9,16 +9,19 @@ public class Login implements ActionListener {
     private static JTextField emailText;
     private static JPasswordField passwordText;
     private static JPasswordField confirmPasswordText;
-    private static JRadioButton femaleButton;
     private static JRadioButton maleButton;
-    private static JCheckBox c1;
+    private static JCheckBox rules;
+    private static JLabel nameLabels;
+    private static JLabel emailLabels;
+    private static JLabel passwordLabels;
+    private static JLabel confirmPasswordLabels;
 
     public void loginForm() {
         JPanel panel = new JPanel();
         JFrame frame = new JFrame();
 
         // Frame, panel, title
-        frame.setSize(600,400);
+        frame.setSize(700,500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(panel);
         frame.setTitle("Registration Form");
@@ -47,7 +50,7 @@ public class Login implements ActionListener {
         maleButton.setBounds(270,100,60,25);
         panel.add(maleButton);
 
-        femaleButton = new JRadioButton("Female");
+        JRadioButton femaleButton = new JRadioButton("Female");
         femaleButton.setBounds(370,100,100,25);
         panel.add(femaleButton);
 
@@ -81,9 +84,9 @@ public class Login implements ActionListener {
         panel.add(confirmPasswordText);
 
         // Checkbox
-        c1 = new JCheckBox("I agree to website terms and policy!");
-        c1.setBounds(240,220,300,25);
-        panel.add(c1);
+        rules = new JCheckBox("I agree to website terms and policy!");
+        rules.setBounds(240,220,300,25);
+        panel.add(rules);
 
         // Button
         JButton button = new JButton("Submit");
@@ -92,6 +95,24 @@ public class Login implements ActionListener {
 
         button.addActionListener(new Login());
 
+        // User inputted Text
+        nameLabels = new JLabel();
+        nameLabels.setBounds(200, 310, 120, 20);
+        panel.add(nameLabels);
+
+        emailLabels = new JLabel();
+        emailLabels.setBounds(200, 340, 160, 20);
+        panel.add(emailLabels);
+
+        passwordLabels = new JLabel();
+        passwordLabels.setBounds(200, 370, 120, 20);
+        panel.add(passwordLabels);
+
+        confirmPasswordLabels = new JLabel();
+        confirmPasswordLabels.setBounds(200, 400, 120, 20);
+        panel.add(confirmPasswordLabels);
+
+
         frame.setVisible(true);
 
     }
@@ -99,13 +120,28 @@ public class Login implements ActionListener {
 // Action Listener
     @Override
     public void actionPerformed(ActionEvent e) {
+        // Grab user input
         String name = nameText.getText();
         String email = emailText.getText();
         String password = String.valueOf(passwordText.getPassword());
         String confirmPassword = String.valueOf(confirmPasswordText.getPassword());
 
+        // Print in console with true/false gender and checkbox
+        System.out.println(name + ", " + maleButton.isSelected() + ", " + email + ", " + password + ", " + confirmPassword + ", " + rules.isSelected());
 
-        System.out.println(name + ", " + maleButton.isSelected() + ", " + email + ", " + password + ", " + confirmPassword + ", " + c1.isSelected());
+        // Print in field without gender and checkbox
+        String nameFieldValue = nameText.getText();
+        nameLabels.setText(nameFieldValue);
 
+        String emailFieldValue = emailText.getText();
+        emailLabels.setText(emailFieldValue);
+
+        String passwordFieldValue = passwordText.getText();
+        passwordLabels.setText(passwordFieldValue);
+
+        String confirmPasswordFieldValue = confirmPasswordText.getText();
+        confirmPasswordLabels.setText(confirmPasswordFieldValue);
+
+        System.out.println(nameFieldValue + " " + emailFieldValue + " " + passwordFieldValue + " " + confirmPasswordFieldValue);
     }
         }
